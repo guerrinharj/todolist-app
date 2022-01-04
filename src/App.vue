@@ -18,6 +18,9 @@ export default {
     teste() {
       return this.$store.getters.teste
     }
+  },
+  mounted() {
+    return this.$store.dispatch('fetchingTodos')
   }
 }
 </script>
