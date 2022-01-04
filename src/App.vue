@@ -1,14 +1,17 @@
 <template>
-  <hello-world></hello-world>
+  <the-nav></the-nav>
+  <the-list></the-list>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TheNav from './components/TheNav.vue'
+import TheList from './components/TheList.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    TheNav,
+    TheList
   }
 }
 </script>
