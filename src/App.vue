@@ -1,6 +1,7 @@
 <template>
   <the-nav></the-nav>
   <the-list></the-list>
+  {{ teste }}
 </template>
 
 <script>
@@ -12,6 +13,11 @@ export default {
   components: {
     TheNav,
     TheList
+  },
+  computed: {
+    teste() {
+      return this.$store.getters.teste
+    }
   }
 }
 </script>
