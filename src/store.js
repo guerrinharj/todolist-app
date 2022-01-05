@@ -17,7 +17,6 @@ const store = createStore({
   },
   mutations: {
     fetchTheTodos(state) {
-      console.log('funcionando')
       fetch('https://todolist-api-gg.herokuapp.com/api/v1/todos')
         .then(response => response.json())
         .then(data => state.todos = data)
