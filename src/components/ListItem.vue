@@ -1,10 +1,13 @@
 <template>
   <div>
-  <p> oi </p>
+  <p> {{ name }} </p>
   </div>
 </template>
 
 <script>
+export default {
+  props: ['name']
+}
 
 </script>
 

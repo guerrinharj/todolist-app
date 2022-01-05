@@ -1,7 +1,8 @@
 <template>
-  <list-item> </list-item>
   <ul>
-    <li v-for="todo in todos" :key="todo"> {{ todo.title }} </li>
+    <li v-for="todo in todos" :key="todo">
+    <list-item :name="todo.title"> </list-item>
+    </li>
   </ul>
 
 </template>
