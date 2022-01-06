@@ -3,13 +3,13 @@ import { createStore } from 'vuex';
 const store = createStore({
   state() {
     return {
-      teste: 'vuex funcionando',
+      isFormOn: false,
       todos: null
     }
   },
   getters: {
-    teste(state) {
-      return state.teste
+    isFormOn(state) {
+      return state.isFormOn
     },
     todos(state) {
       return state.todos
@@ -23,6 +23,9 @@ const store = createStore({
         .catch(error => {
           console.error('There has been a problem with your fetch operation:', error);
         });
+    },
+    openTheForm(state) {
+      state.isFormOn = !state.isFormOn
     }
 
   },
@@ -30,6 +33,10 @@ const store = createStore({
 
     fetchingTodos(context, payload) {
       context.commit('fetchTheTodos', payload)
+    },
+
+    openingForm(context, payload) {
+      context.commit('openTheForm', payload)
     }
 
   }
