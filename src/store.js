@@ -28,7 +28,28 @@ const store = createStore({
       state.isFormOn = !state.isFormOn
     },
     submitTheForm(state, payload) {
-      console.log(state, payload.form.target[0].value)
+
+      const titleSubmitted = payload.form.target[0].value
+      let completedSubmitted = payload.form.target[1].value
+
+      if (completedSubmitted == 'on') {
+        completedSubmitted = true
+      } else {
+        completedSubmitted = false
+      }
+
+      console.log(state, titleSubmitted, completedSubmitted)
+
+      fetch('https://todolist-api-gg.herokuapp.com/api/v1/todos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title: titleSubmitted,
+          completed: payload.form.target[1].value
+        })
+      })
     }
 
   },
