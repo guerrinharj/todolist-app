@@ -26,6 +26,9 @@ const store = createStore({
     },
     openTheForm(state) {
       state.isFormOn = !state.isFormOn
+    },
+    submitTheForm(state, payload) {
+      console.log(state, payload.form.target[0].value)
     }
 
   },
@@ -37,6 +40,10 @@ const store = createStore({
 
     openingForm(context, payload) {
       context.commit('openTheForm', payload)
+    },
+
+    submitingForm(context, payload) {
+      context.commit('submitTheForm', payload)
     }
 
   }
