@@ -3,7 +3,8 @@
     <li v-for="todo in todos" :key="todo">
     <list-item
     :name="todo.title"
-    :completed="todo.completed"> </list-item>
+    :completed="todo.completed"
+    :id="todo.id"> </list-item>
     </li>
   </ul>
 
