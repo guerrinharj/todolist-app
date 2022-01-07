@@ -22,7 +22,7 @@ export default {
       return this.$store.getters.isFormOn
     }
   },
-  mounted() {
+   mounted() {
     return this.$store.dispatch('fetchingTodos')
   },
   methods: {

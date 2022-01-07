@@ -39,8 +39,6 @@ const store = createStore({
         completedSubmitted = false
       }
 
-      console.log(state, titleSubmitted, completedSubmitted)
-
       axios.post('https://todolist-api-gg.herokuapp.com/api/v1/todos', {
         title: titleSubmitted,
         completed: completedSubmitted
@@ -60,6 +58,7 @@ const store = createStore({
 
     submitingForm(context, payload) {
       context.commit('submitTheForm', payload)
+      context.commit('fetchTheTodos')
     }
 
   }
