@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createStore } from 'vuex';
 
 const store = createStore({
@@ -17,38 +18,26 @@ const store = createStore({
   },
   mutations: {
     fetchTheTodos(state) {
-      fetch('https://todolist-api-gg.herokuapp.com/api/v1/todos')
-        .then(response => response.json())
-        .then(data => state.todos = data)
-        .catch(error => {
-          console.error('There has been a problem with your fetch operation:', error);
-        });
+      axios.get("https://todolist-api-gg.herokuapp.com/api/v1/todos").then(res => {
+        state.todos = res.data
+      }).catch(error => {
+        console.log(error)
+      })
     },
     openTheForm(state) {
       state.isFormOn = !state.isFormOn
     },
     submitTheForm(state, payload) {
 
+
       const titleSubmitted = payload.form.target[0].value
-      let completedSubmitted = payload.form.target[1].value
+      const completedSubmitted = payload.form.target[1].checked
 
-      if (completedSubmitted == 'on') {
-        completedSubmitted = true
-      } else {
-        completedSubmitted = false
-      }
+      console.log(titleSubmitted, completedSubmitted)
 
-      console.log(state, titleSubmitted, completedSubmitted)
-
-      fetch('https://todolist-api-gg.herokuapp.com/api/v1/todos', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          title: titleSubmitted,
-          completed: payload.form.target[1].value
-        })
+      axios.post('https://todolist-api-gg.herokuapp.com/api/v1/todos', {
+        title: titleSubmitted,
+        completed: completedSubmitted
       })
     }
 
@@ -65,6 +54,7 @@ const store = createStore({
 
     submitingForm(context, payload) {
       context.commit('submitTheForm', payload)
+      context.commit('fetchTheTodos')
     }
 
   }
