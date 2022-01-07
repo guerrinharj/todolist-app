@@ -19,7 +19,6 @@ const store = createStore({
   mutations: {
     fetchTheTodos(state) {
       axios.get("https://todolist-api-gg.herokuapp.com/api/v1/todos").then(res => {
-        console.log(res.data)
         state.todos = res.data
       }).catch(error => {
         console.log(error)
@@ -30,14 +29,11 @@ const store = createStore({
     },
     submitTheForm(state, payload) {
 
-      const titleSubmitted = payload.form.target[0].value
-      let completedSubmitted = payload.form.target[1].value
 
-      if (completedSubmitted == 'on') {
-        completedSubmitted = true
-      } else {
-        completedSubmitted = false
-      }
+      const titleSubmitted = payload.form.target[0].value
+      const completedSubmitted = payload.form.target[1].checked
+
+      console.log(titleSubmitted, completedSubmitted)
 
       axios.post('https://todolist-api-gg.herokuapp.com/api/v1/todos', {
         title: titleSubmitted,
