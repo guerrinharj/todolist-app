@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createStore } from 'vuex';
 
 const store = createStore({
@@ -17,12 +18,12 @@ const store = createStore({
   },
   mutations: {
     fetchTheTodos(state) {
-      fetch('https://todolist-api-gg.herokuapp.com/api/v1/todos')
-        .then(response => response.json())
-        .then(data => state.todos = data)
-        .catch(error => {
-          console.error('There has been a problem with your fetch operation:', error);
-        });
+      axios.get("https://todolist-api-gg.herokuapp.com/api/v1/todos").then(res => {
+        console.log(res.data)
+        state.todos = res.data
+      }).catch(error => {
+        console.log(error)
+      })
     },
     openTheForm(state) {
       state.isFormOn = !state.isFormOn
@@ -40,15 +41,9 @@ const store = createStore({
 
       console.log(state, titleSubmitted, completedSubmitted)
 
-      fetch('https://todolist-api-gg.herokuapp.com/api/v1/todos', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          title: titleSubmitted,
-          completed: payload.form.target[1].value
-        })
+      axios.post('https://todolist-api-gg.herokuapp.com/api/v1/todos', {
+        title: titleSubmitted,
+        completed: completedSubmitted
       })
     }
 

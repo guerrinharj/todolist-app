@@ -1,7 +1,7 @@
 <template>
   <div>
   <p> {{ name }}: {{ completed }} </p>
-  <p> EDIT | DELETE </p>
+  <p> <span>EDIT</span> | DELETE </p>
   </div>
 </template>
 
