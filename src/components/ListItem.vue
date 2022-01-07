@@ -2,7 +2,8 @@
   <div :id="id">
   <p> {{ name }}: {{ completed }} </p>
   <the-form v-if="isEditOn"> </the-form>
-  <p> <span @click="openEdit">EDIT</span> | <button @click="deleteItem">DELETE</button> </p>
+  <p> <span @click="openEdit">EDIT</span> |
+  <button @click="deleteItem">DELETE</button> </p>
   </div>
 </template>
 
@@ -24,10 +25,11 @@ export default {
         edit: ed
       })
     },
-    deleteItem(item) {
-      this.$store.dispatch('deletingItem', {
+    async deleteItem(item) {
+      await this.$store.dispatch('deletingItem', {
         item: item
       })
+      await this.$store.dispatch('fetchingTodos')
     }
   }
 }

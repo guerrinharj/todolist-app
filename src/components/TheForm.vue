@@ -13,10 +13,11 @@
 <script>
 export default {
   methods: {
-    submitForm(fo) {
-      this.$store.dispatch('submitingForm', {
+    async submitForm(fo) {
+      await this.$store.dispatch('submitingForm', {
         form: fo
       })
+      await this.$store.dispatch('fetchingTodos')
     }
   }
 }
