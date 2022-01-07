@@ -1,12 +1,13 @@
 <template>
   <div>
-  <p> {{ name }} </p>
+  <p> {{ name }}: {{ completed }} </p>
+  <p> EDIT | DELETE </p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['name']
+  props: ['name', 'completed']
 }
 
 </script>

@@ -1,7 +1,9 @@
 <template>
   <ul>
     <li v-for="todo in todos" :key="todo">
-    <list-item :name="todo.title"> </list-item>
+    <list-item
+    :name="todo.title"
+    :completed="todo.completed"> </list-item>
     </li>
   </ul>
 
