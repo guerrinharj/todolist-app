@@ -32,8 +32,6 @@ const store = createStore({
       const titleSubmitted = payload.form.target[0].value
       const completedSubmitted = payload.form.target[1].checked
 
-      console.log(titleSubmitted, completedSubmitted)
-
       axios.post('https://todolist-api-gg.herokuapp.com/api/v1/todos', {
         title: titleSubmitted,
         completed: completedSubmitted
@@ -79,7 +77,6 @@ const store = createStore({
     deletingItem(context, payload) {
       context.commit('deleteTheItem', payload)
       context.commit('fetchTheTodos')
-      console.log(context)
     }
 
   }
