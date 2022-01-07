@@ -66,7 +66,8 @@ const store = createStore({
     },
 
     submitingForm(context, payload) {
-       context.commit('submitTheForm', payload);
+      context.commit('submitTheForm', payload);
+      context.commit('fetchTheTodos', payload)
     },
 
     openingEdit(context, payload) {
@@ -75,6 +76,7 @@ const store = createStore({
 
     deletingItem(context, payload) {
       context.commit('deleteTheItem', payload);
+      context.commit('fetchTheTodos', payload)
     }
 
   }
