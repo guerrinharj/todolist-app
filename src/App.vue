@@ -1,8 +1,8 @@
 <template>
   <the-nav></the-nav>
-  <the-list></the-list>
   <div @click="openForm"> create a todo </div>
   <the-form v-if="isFormOn"> </the-form>
+  <the-list></the-list>
 </template>
 
 <script>

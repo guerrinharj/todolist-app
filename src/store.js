@@ -38,6 +38,7 @@ const store = createStore({
         title: titleSubmitted,
         completed: completedSubmitted
       })
+
     },
     openTheEdit(state, payload) {
       console.log(state, payload)
@@ -49,9 +50,7 @@ const store = createStore({
 
       todosArray.forEach((todo) => {
         if (todo.id == elForDelete.id) {
-          axios.delete(`https://todolist-api-gg.herokuapp.com/api/v1/todos/${todo.id}`, {
-            headers: { "Access-Control-Allow-Origin": "*" }
-          })
+          axios.delete(`https://todolist-api-gg.herokuapp.com/api/v1/todos/${todo.id}`)
         }
       })
 
@@ -69,8 +68,8 @@ const store = createStore({
     },
 
     submitingForm(context, payload) {
-      context.commit('submitTheForm', payload)
-      context.commit('fetchTheTodos')
+       context.commit('submitTheForm', payload)
+       context.commit('fetchTheTodos')
     },
 
     openingEdit(context, payload) {
@@ -79,6 +78,8 @@ const store = createStore({
 
     deletingItem(context, payload) {
       context.commit('deleteTheItem', payload)
+      context.commit('fetchTheTodos')
+      console.log(context)
     }
 
   }

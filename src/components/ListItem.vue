@@ -2,7 +2,7 @@
   <div :id="id">
   <p> {{ name }}: {{ completed }} </p>
   <the-form v-if="isEditOn"> </the-form>
-  <p> <span @click="openEdit">EDIT</span> | <span @click="deleteItem">DELETE</span> </p>
+  <p> <span @click="openEdit">EDIT</span> | <button @click="deleteItem">DELETE</button> </p>
   </div>
 </template>
 
