@@ -18,6 +18,7 @@ const store = createStore({
   },
   mutations: {
     fetchTheTodos(state) {
+      console.log('fetching')
       axios.get("https://todolist-api-gg.herokuapp.com/api/v1/todos").then(res => {
         state.todos = res.data
       }).catch(error => {
@@ -42,7 +43,6 @@ const store = createStore({
       console.log(state, payload)
     },
     deleteTheItem(state, payload) {
-
       const todosArray = state.todos
       const elForDelete = payload.item.target.parentElement.parentElement
 
@@ -51,7 +51,6 @@ const store = createStore({
           axios.delete(`https://todolist-api-gg.herokuapp.com/api/v1/todos/${todo.id}`)
         }
       })
-
     }
 
   },
