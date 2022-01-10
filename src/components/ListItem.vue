@@ -1,7 +1,9 @@
 <template>
   <div :id="id">
   <p> {{ name }}: {{ completed }} </p>
-  <the-form v-if="isEditOn"> </the-form>
+  <div class="edit-form">
+    <the-form isedit="true"> </the-form>
+  </div>
   <p> <button @click="openEdit">EDIT</button> |
   <button @click="deleteItem">DELETE</button> </p>
   </div>
@@ -37,5 +39,9 @@ export default {
 </script>
 
 <style scoped>
+
+.edit-form {
+  display: none;
+}
 
 </style>

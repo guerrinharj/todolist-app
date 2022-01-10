@@ -18,7 +18,6 @@ const store = createStore({
   },
   mutations: {
     fetchTheTodos(state) {
-      console.log('fetching')
       axios.get("https://todolist-api-gg.herokuapp.com/api/v1/todos").then(res => {
         state.todos = res.data
       }).catch(error => {
@@ -40,7 +39,37 @@ const store = createStore({
 
     },
     openTheEdit(state, payload) {
-      console.log(state, payload)
+
+
+      const openStateEdit = state.todos
+      const openPayloadEdit = payload.edit.target.parentElement.parentElement
+
+      openStateEdit.forEach((todo) => {
+        if (todo.id == openPayloadEdit.id) {
+          const formTags = openPayloadEdit.querySelectorAll('.edit-form')
+          formTags.forEach((tag) => {
+            tag.style.display = 'block'
+          })
+        }
+      })
+
+    },
+    submitTheEdit(state, payload) {
+      const todosArray = state.todos
+      const elForEdit = payload.form.target.parentElement.parentElement.parentElement
+
+      const titleEdit = payload.form.target[0].value
+      const completedEdit = payload.form.target[1].checked
+
+      todosArray.forEach(todo => {
+        if (todo.id == elForEdit.id) {
+          axios.patch(`https://todolist-api-gg.herokuapp.com/api/v1/todos/${elForEdit.id}`, {
+            title: titleEdit,
+            completed: completedEdit
+          })
+        }
+      })
+
     },
     deleteTheItem(state, payload) {
       const todosArray = state.todos
@@ -71,6 +100,11 @@ const store = createStore({
 
     openingEdit(context, payload) {
       context.commit('openTheEdit', payload)
+    },
+
+    submitingEdit(context, payload) {
+      context.commit('submitTheEdit', payload)
+      context.commit('fetchTheTodos', payload)
     },
 
     deletingItem(context, payload) {
